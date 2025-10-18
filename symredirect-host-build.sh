@@ -17,7 +17,7 @@ if [ $(uname -s) != "Darwin" ]; then
 fi
 
 echo "*** Building the symredirect-host executable ..."
-clang++ -v -std=c++11 $EXTRA_HEADER_FLAG -o symredirect-host symredirect.cpp
+clang++ -v -std=c++11 -target arm64-apple-macos13.0 -isysroot $(xcrun --sdk macosx --show-sdk-path) $EXTRA_HEADER_FLAG -o symredirect-host symredirect.cpp
 
 if [ $(uname -s) = "Darwin" ] && [ "$(sw_vers -productName)" != "macOS" ]; then
     echo "*** Signing the symredirect-host with entitlements ..."
